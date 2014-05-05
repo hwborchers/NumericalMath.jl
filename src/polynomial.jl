@@ -3,7 +3,7 @@
 ##
 
 
-function polyval(p::Vector, x::Number)
+function pval(p::Vector, x::Number)
     local n = length(p)
     if n == 0
         return NaN
