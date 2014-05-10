@@ -2,7 +2,7 @@ module NumericalMath
 
 # package code goes here
 
-  export pval, horner,
+  export horner,
          ridders, bisect, brent_dekker,
          trapz,
          lambert_W
