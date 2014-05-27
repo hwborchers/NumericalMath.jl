@@ -10,7 +10,7 @@ function lambertW(x::Real)
     if x <  -1.0/exp(1.0); return NaN, NaN;  end
     if x == -1.0/exp(1.0); return -Inf, Inf; end
 
-    local w0::Real = 1.0, w1::Realw2::Real
+    local w0::Real = 1.0, w1::Real, w2::Real
     w1 = w0 - (w0 * exp(w0) - x)/((w0 + 1.0) * exp(w0) - 
         (w0 + 2.0) * (w0 * exp(w0) - x)/(2.0 * w0 + 2.0))
 
