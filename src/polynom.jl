@@ -1,5 +1,5 @@
 ##
-##  p o l y n o m i a l . j l  Polynomials
+##  p o l y n o m . j l  Polynomials
 ##
 
 
