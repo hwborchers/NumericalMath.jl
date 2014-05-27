@@ -9,13 +9,27 @@ function fd_gradient{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
     local heps::Real = h
     if heps == 0.0; heps = eps()^(1.0/3.0); end
     local n::Int = length(x0)
+    if length(f(x0)) > 1
+        error("Function 'f' must be a scalar function.")
+    end
+
     local hh = zeros(n), gr = zeros(n)
     for i = 1:n
         hh[i] = heps
-        gr[i] = (f(x0 + hh) - f(x0 - hh)) / (2.0*heps)
+        gr[i] = ((f(x0 + hh) - f(x0 - hh)) / (2.0*heps))
         hh[i] = 0.0
     end
     return gr
+end
+
+
+function fd_gradient(f::Function, x0::Real; h::Real = 0.0)
+    local heps::Real = h
+    if heps == 0.0; heps = eps()^(1.0/3.0); end
+    if length(f(x0)) > 1
+        error("Function 'f' must be a scalar function.")
+    end
+    return (f(x0 + heps) - f(x0 - heps)) / (2.0*heps)
 end
 
 
