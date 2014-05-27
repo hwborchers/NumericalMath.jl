@@ -13,7 +13,7 @@ module NumericalMath
   export lambertW
   
   include("la.jl")
-  include("polynomial.jl")
+  include("polynom.jl")
   include("interpolate.jl")
   include("fzero.jl")
   include("derivative.jl")
