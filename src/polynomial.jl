@@ -3,12 +3,28 @@
 ##
 
 
-function horner{T<:Number}(p::Vector{T}, x::T)
+function pval(p::Vector, x::Number)
     local n = length(p)
     if n == 0
-        return 0,0
+        return NaN
     elseif n == 1
-        return p[1],0
+        return p[1]
+    else
+        y = p[1]
+        for i in 2:n
+            y = y * x + p[i]
+        end
+    end
+    return y
+end
+
+
+function horner(p::Vector, x::Number)
+    local n = length(p)
+    if n == 0
+        return NaN, NaN
+    elseif n == 1
+        return p[1], 0
     else
         y = p[1]; dy = 0
         for i in 2:n
@@ -16,22 +32,29 @@ function horner{T<:Number}(p::Vector{T}, x::T)
             y  =  y * x + p[i]
         end
     end
-    return y,dy
+    return y, dy
 end
 
 
-function horner{T<:Number}(p::Vector{T}, x::Vector{T})
-    local n = length(p)
-    if n == 0
-        return [0],[0]
-    elseif n == 1
-        return p,[0]
-    else
-        y = p[1]; dy = 0
-        for i in 2:n
-            dy = dy .* x .+ y
-            y  =  y .* x .+ p[i]
-        end
+function pzero{T<:Real}(p::Vector{T}, x0::T)
+    local x = x0, tol = 2*eps(x)
+    px, dpx = horner(p, x)
+    df = -px/dpx
+    niter = 1
+    while abs(df) >= tol && niter <= 100
+        x += df
+        px, dpx = horner(p, x)
+        df = -px/dpx
+        niter += 1
     end
-    return y,dy
+    if niter > 100
+        warn("Number of iterations exceeded.")
+        x = NaN
+    end
+    return x + df
+end
+
+
+function pfit()
+    error("Polynomial fit not yet implemented.")
 end
