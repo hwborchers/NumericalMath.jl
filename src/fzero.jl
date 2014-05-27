@@ -42,33 +42,6 @@ function ridders(f::Function, a::Real, b::Real;
 end
 
 
-function bisect(f::Function, a::Real, b::Real;
-                maxiter::Integer = 1000, tol::Real = eps())
-
-	if f(a)*f(b) > 0
-	    error("f(a) and f(b) must have different signs.")
-	end
-
-	x1 = min(a, b); x2 = max(a,b)
-	xm = (x1+x2) / 2.0
-
-	n = 0
-	while abs(x1-x2)/2.0 > tol
-		n += 1
-		if abs(f(xm)) <= tol; break; end
-		if f(x1)*f(xm) < 0
-			x2 = xm
-		else
-			x1 = xm
-		end
-		xm = (x1+x2) / 2.0
-		if n >= maxiter; break; end
-	end
-
-	return xm
-end
-
-
 function brent_dekker(f::Function, a::Real, b::Real;
                        maxiter::Integer = 1000, tol::Real = eps())
 
