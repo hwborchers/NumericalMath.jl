@@ -46,8 +46,6 @@ Functions from Numerical Mathematics for Julia.
   * trapz(x, y)      -- Trapezoidal rule for integrating discrete points
                           (with end point correction terms)
   * romberg(f, a, b) -- Romberg integration (ie., utilizes Richardson's method)
-  * line_integral(f, points)    -- line integral of complex functions
-                                     along the path defined by 'points'
 
 ### Miscellaneous
 
