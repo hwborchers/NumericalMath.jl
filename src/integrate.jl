@@ -61,27 +61,3 @@ function romberg(f::Function, a::Real, b::Real;
 
      return I[1, iter+1], err
 end
-
-
-function line_integral(f::Function, points::Array{Complex{Float64},1}; tol = 1e-15)
-    local n::Int = length(points)
-    local Q::Complex = 0.0 + 0.0im
-    if n == 1; return Q; end
-
-    for i = 2:n
-        a = points[i-1]
-        b = points[i]
-        d = b - a
-
-        f1(t) = real(f(a + t*d))
-        f2(t) = imag(f(a + t*d))
-
-        Qre = quadgk(f1, 0.0, 1.0)[1]
-        Qim = quadgk(f2, 0.0, 1.0)[1]
-
-        Q += d * (Qre + Qim*1.0im)
-    end
-
-    return Q
-end
-
