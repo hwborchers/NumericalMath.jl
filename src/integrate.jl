@@ -61,3 +61,4 @@ function romberg(f::Function, a::Real, b::Real;
 
      return I[1, iter+1], err
 end
+
