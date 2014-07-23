@@ -3,7 +3,7 @@
 ##  Introduction
 
 Functions from Numerical Mathematics for Julia.  
-[Version 0.2.0; 2014-05-27]
+[Version 0.2.1; 2014-07-23]
 
 ##  Functions
 
