@@ -8,7 +8,7 @@ module NumericalMath
   export ridders, brent_dekker
   export fd_gradient, fd_jacobian, fd_hessian, fd_laplacian,
          numderiv, complex_step
-  export trapz, romberg, line_integral
+  export trapz, romberg
   export agm, arc_length
   export lambertW
   
